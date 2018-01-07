@@ -14,7 +14,7 @@ class Bagging:
 	
 	def fit(self, data):
 
-		if data == None:
+		if data is None:
 			return
 
 		data = np.array(data)

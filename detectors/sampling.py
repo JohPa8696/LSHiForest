@@ -23,7 +23,7 @@ class VSSampling(Sampling):
 		self._upper_bound = upper_bound
 		self._vs_type = vs_type
 
-	
+	# Create an array of instances for training
 	def fit(self, data):
 		if data is None:
 			return

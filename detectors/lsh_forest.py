@@ -56,6 +56,9 @@ class LSHForest:
 			sampled_data = sampled_datas[i]
 			tree = lt.LSHTree(lsh_instances[i])
 			tree.build(sampled_data)
+			# print "Displaying tree " + str(i)
+			# tree.display()   # CONSOLE OUTPUT
+			# print "***********"
 			self._trees.append(tree)
 
 	
@@ -85,8 +88,8 @@ class LSHForest:
 			avg_depths.append(depth_avg)
 
 		avg_depths = np.array(avg_depths)
-		return -1.0*avg_depths
-
+		# return -1.0*avg_depths
+		return avg_depths
 
 	def get_avg_branch_factor(self):
 		sum = 0.0
