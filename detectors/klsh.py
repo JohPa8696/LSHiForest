@@ -13,7 +13,7 @@ from lsh import LSH
 
 class KernelLSH(LSH):
 	''' Class to build kernelized locality sensitive hashing function '''
-
+	# para_p_max = "gamma" = 300, para_t_max = 30, nbits="u"
 	def __init__(self, nbits=3, kernel='rbf', kernel_kwds='range', para_p_max=300, para_p_exp=0.5, para_t_max=30, para_t_ratio=4, weight_pool_size=50):
 		LSH.__init__(self, weight_pool_size)
 		self._nbits = nbits
@@ -47,7 +47,7 @@ class KernelLSH(LSH):
 
 
 	def _check_kernel(self, kernel, kernel_kwds=None):
-		self._kernel_func = kernel
+		self._kernel_func = 'rbf'  #  NEED TO CHECK KERNEL FUCNTION WHAT FOR?
 
 
 	def fit(self, data):
@@ -63,7 +63,7 @@ class KernelLSH(LSH):
 		self._para_t = min(max(1, self._para_p//self._para_t_ratio), self._para_t)
 		#print self._para_p, self._para_t
 		
-		if self._kernel_func == 'rbf':
+		if self._kernel_func == 'rbf' or self._kernel_func == 'puk':
 			if type(self._kernel_kwds) == tp.StringType and self._kernel_kwds == 'auto':
 				self._kernel_kwds = 1.0/d
 			elif type(self._kernel_kwds) == tp.StringType and self._kernel_kwds == 'range':

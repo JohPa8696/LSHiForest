@@ -8,6 +8,7 @@ import pandas as pd
 import csv
 import time
 from sklearn.metrics import roc_auc_score
+import matplotlib.pyplot as mpl
 from sklearn.ensemble import IsolationForest
 
 from detectors import VSSampling
@@ -31,7 +32,7 @@ ground_truth = data.as_matrix()[:, -1].tolist()
 # 			   ("L2SH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), E2LSH(norm=2))),
 # 			   ("KLSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), KernelLSH()))]
 
-classifiers = [("L1SH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), E2LSH(norm=1)))]
+classifiers = [("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH()))]
 results =[]
 for ind in range(100):
 	temp = []
@@ -56,9 +57,15 @@ for ind in range(100):
 		train_time = time.time()- start_time
 		test_time = time.time()- start_time - train_time
 		auc = roc_auc_score(ground_truth, -1.0*y_pred)
-		results.append(auc)
+		results.append(auc*100)
 		# print "AUC:	", auc
 		# print "Training time:	", train_time
 		# print "Testing time:	", test_time
+with open("deep2.csv","w") as filerw:
+	resultWriter = csv.writer(filerw)
+	resultWriter.writerow(results)
 
+filerw.close()
+mpl.boxplot(results)
+mpl.show()
 print results

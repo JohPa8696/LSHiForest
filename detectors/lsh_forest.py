@@ -40,7 +40,7 @@ class LSHForest:
 
 		# Sampling data
 		self._sampler.fit(data)
-		sampled_datas = self._sampler.draw_samples(data)
+		sampled_datas = self._sampler.draw_samples(data) 		# Sampler draws 't' sample data from the dataset for 't' tree
 		
 		# Build LSH instances based on the given data
 		lsh_instances = []
