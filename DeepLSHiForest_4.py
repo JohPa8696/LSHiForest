@@ -33,19 +33,31 @@ def get_prediction(arg):
 	sorted = list(y_pred)
 	# Sort the array
 	sorted.sort(reverse=True)
+	# Function thresholding
+	y_pred_var = np.var(y_pred)
+	y_pred_mean = np.mean(y_pred)
+	print "	mean: " + str(y_pred_mean) + " - variance: " + str(y_pred_var)
 	# Calculate the number of instances in the 5 or 95 percentile
 	# Get the instances with the lowest y_pred
-	percentile5 = sorted[0:int(len(y_pred) * 0.08 - 1.0)]
-
+	# percentile5 = sorted[0:int(len(y_pred) * 0.08 - 1.0)]
+	num_outliers =0;
 	bias_pred = []
+	for yi in y_pred:
+		outlier_score = yi - y_pred_mean - y_pred_var * int(len(y_pred) * 0.08 - 1.0)
+		if outlier_score >= 0:
+			bias_pred.append(1)
+			num_outliers += 1
+		else:
+			bias_pred.append(0)
+	print "	num_outliers: " +str(num_outliers)
 	# Assign 1 to the instances in the 5 percentile and -1 to the rest
 	# THIS IS A VERY NAIVE WAY OF INTRODUCING BIAS
 	# LOOK FOR BETTER WAYS
-	for y_pred_indx in range(len(y_pred)):
-		if y_pred[y_pred_indx] in percentile5:
-			bias_pred.append(1)
-		else:
-			bias_pred.append(0)
+	# for y_pred_indx in range(len(y_pred)):
+	# 	if y_pred[y_pred_indx] in percentile5:
+	# 		bias_pred.append(1)
+	# 	else:
+	# 		bias_pred.append(0)
 	return (bias_pred, y_pred.tolist())
 
 
