@@ -39,6 +39,11 @@ class VSSampling(Sampling):
 		data_size = len(data)
 		
 		sampled_indices = []
+		marked_instances = []
+		# Find indices of instances that were marked as outliers from the previous layer
+		# for i in range(len(data)):
+		# 	if data[i][0] == 1 or data[i][1] == 1 or data[i][2] == 1 or data[i][3] == 1 or data[i][4] == 1:
+		# 		marked_instances.append(i)
 		if self._bootstrap:
 			for i in range(self._num_samples):
 				indices = []
@@ -68,6 +73,17 @@ class VSSampling(Sampling):
 					index_val = remain_indices[index_ind]
 					new_indices.append(index_val)
 					remain_indices.remove(index_val)
+				# Adding positive instances
+				# num_marked_instances = int(sample_size *0.08)
+				# index = 0
+				# while num_marked_instances > 0 and len(marked_instances) > 5 and index <= len(marked_instances):
+				# 	index_ind = np.random.randint(0, len(marked_instances))
+				# 	if marked_instances[index_ind] not in new_indices:
+				# 		new_indices.append(marked_instances[index_ind])
+				# 		remain_indices.remove(marked_instances[index_ind])
+				# 		marked_instances.remove(marked_instances[index_ind])
+				# 		num_marked_instances -= 1
+				# 	index += 1
 				new_indices.sort()
 				sampled_indices.append(new_indices)
 
