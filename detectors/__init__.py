@@ -9,4 +9,4 @@ from bagging import Bagging
 from lsh import E2LSH
 from klsh import KernelLSH
 from lsh import AngleLSH
-
+from sci_forest import SciForest

@@ -4,7 +4,7 @@
 #
 
 import numpy as np
-
+import scipy
 
 class LSH():
 	''' The base class of LSH families '''
@@ -17,6 +17,27 @@ class LSH():
 	# x' <- format_for_lsh(self, x)
 	# key <- get_hash_value(self, x, hash_index)
 
+class SpectralHashing(LSH):
+	''' Implementation fo Spectral hashing'''
+	def __init__(self,nbits=8):
+		self.nbits = nbits
+	def get_lsh_type(self):
+		return 'Spectral Hashing'
+	# def display_hash_func_parameters(self):
+
+	# In this function we attempt to learn paprameter from the dataset
+	def fit(self, data):
+		if data is None:
+			return
+		num_instance = len(data)
+		num_dimensions = len(data[0])
+
+		#Perform PCA
+		npca = min(self.nbits, num_dimensions)
+		scipy.linalg.eigh(np.cov(data),npca)
+	# def format_for_lsh(self):
+
+	# def get_hash_value(self):
 
 class E2LSH(LSH):
 	''' Class to build E2 locality sensitive hashing family '''

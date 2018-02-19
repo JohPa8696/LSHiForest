@@ -29,7 +29,6 @@ class LSHForest:
 	def fit(self, data):
 		self.build(data)
 
-
 	def build(self, data):
 		indices = range(len(data))
 		# Uncomment the following code for continuous values
@@ -94,5 +93,7 @@ class LSHForest:
 	def get_avg_branch_factor(self):
 		sum = 0.0
 		for t in self._trees:
-			sum += t.get_avg_branch_factor()
+			branching_factor = t.get_avg_branch_factor()
+			print str(branching_factor)
+			sum += branching_factor
 		return sum/self._num_trees		
