@@ -1,11 +1,6 @@
 #! /usr/bin/python
-#
-# Implemented by Xuyun Zhang (email: xuyun.zhang@auckland.ac.nz). Copyright reserved.
-#
-
 import numpy as np
 import pandas as pd
-import csv
 import time
 import matplotlib.pyplot as mpl
 from sklearn.metrics import roc_auc_score
@@ -48,8 +43,6 @@ for i, (clf_name, clf) in enumerate(classifiers):
 	auc = roc_auc_score(ground_truth, y_pred)
 	results.append(auc*100)
 	print "AUC:	", auc
-	# print "Training time:	", train_time
-	# print "Testing time:	", test_time
 
 # with open("demo.csv","w") as filerw:
 # 	resultWriter = csv.writer(filerw)
