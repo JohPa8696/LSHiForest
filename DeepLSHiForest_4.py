@@ -88,11 +88,6 @@ if __name__ == '__main__':
 					   ("KLSH3_lay_" + str(layer_index), LSHForest(num_ensemblers, VSSampling(num_ensemblers), KernelLSH(nbits=3, kernel='puk'))),
 					   ("KLSH4_lay_" + str(layer_index), LSHForest(num_ensemblers, VSSampling(num_ensemblers), KernelLSH(nbits=4, kernel='puk'))),
 					   ("KLSH5_lay_" + str(layer_index), LSHForest(num_ensemblers, VSSampling(num_ensemblers), KernelLSH(nbits=5, kernel='puk')))]
-		# classifiers = [("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH())),
-		# 			   ("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH())),
-		# 			   ("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH())),
-		# 			   ("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH())),
-		# 			   ("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH()))]
 
 		print len(X[0])
 		# Initialize layer variable containers

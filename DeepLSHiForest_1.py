@@ -1,8 +1,4 @@
 #! /usr/bin/python
-#
-# Implemented by Xuyun Zhang (email: xuyun.zhang@auckland.ac.nz). Copyright reserved.
-#
-
 import numpy as np
 import pandas as pd
 import csv
@@ -27,11 +23,6 @@ data = pd.read_csv('dat/glass.csv', header=None) #data is a dataframe object
 X = data.as_matrix()[:, :-1].tolist()
 ground_truth = data.as_matrix()[:, -1].tolist()
 #
-# classifiers = [("sklearn.ISO", IsolationForest(random_state=rng)),
-# 			   ("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), AngleLSH())),
-# 			   ("L1SH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), E2LSH(norm=1))),
-# 			   ("L2SH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), E2LSH(norm=2))),
-# 			   ("KLSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), KernelLSH()))]
 
 classifiers = [ ("L2SH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), E2LSH(norm=2)))]
 results =[]

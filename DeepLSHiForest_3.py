@@ -1,8 +1,4 @@
 #! /usr/bin/python
-#
-# Implemented by Xuyun Zhang (email: xuyun.zhang@auckland.ac.nz). Copyright reserved.
-#
-
 import numpy as np
 import pandas as pd
 import csv

@@ -16,7 +16,7 @@ rng = np.random.RandomState(42)
 num_ensemblers = 100
 
 # data = pd.read_csv('dat/glass.csv', header=None)
-data = pd.read_csv('dat/glass.csv', header=None) #data is a dataframe object
+data = pd.read_csv('dat/isolet.csv', header=None) #data is a dataframe object
 X = data.as_matrix()[:, :-1].tolist()
 ground_truth = data.as_matrix()[:, -1].tolist()
 #
@@ -26,7 +26,7 @@ ground_truth = data.as_matrix()[:, -1].tolist()
 # 			   ("L2SH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), E2LSH(norm=2))),
 # 			   ("KLSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers), KernelLSH()))]
 
-classifiers = [("ALSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers),AngleLSH()))]
+classifiers = [("KLSH", LSHForest(num_ensemblers, VSSampling(num_ensemblers),KernelLSH()))]
 results = []
 
 for i, (clf_name, clf) in enumerate(classifiers):
@@ -49,6 +49,6 @@ for i, (clf_name, clf) in enumerate(classifiers):
 # 	resultWriter.writerow(results)
 #
 # filerw.close();
-mpl.boxplot(results)
-mpl.show()
-print results
+# mpl.boxplot(results)
+# mpl.show()
+# print results
